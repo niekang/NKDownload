@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0203357FA7954550DE09FBC7 /* Pods_NKDownload.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ABE88076E01286F21DB03C3 /* Pods_NKDownload.framework */; };
+		82D40C621EC94D8E005FF4BD /* DownloadCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D40C611EC94D8E005FF4BD /* DownloadCell.swift */; };
+		82D40C661EC96FE8005FF4BD /* NKDownloadManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D40C651EC96FE8005FF4BD /* NKDownloadManger.swift */; };
+		82D40C681EC9737B005FF4BD /* FinishViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D40C671EC9737B005FF4BD /* FinishViewController.swift */; };
+		82D40C6A1EC975C4005FF4BD /* NKDownlaodTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D40C691EC975C4005FF4BD /* NKDownlaodTask.swift */; };
+		82D40C6C1EC9849E005FF4BD /* DownloadDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D40C6B1EC9849E005FF4BD /* DownloadDefine.swift */; };
 		82ECB4131EC944D700B60878 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82ECB4121EC944D700B60878 /* AppDelegate.swift */; };
 		82ECB4151EC944D700B60878 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82ECB4141EC944D700B60878 /* ViewController.swift */; };
 		82ECB4181EC944D700B60878 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82ECB4161EC944D700B60878 /* Main.storyboard */; };
@@ -34,6 +40,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2ABE88076E01286F21DB03C3 /* Pods_NKDownload.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NKDownload.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		82D40C611EC94D8E005FF4BD /* DownloadCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadCell.swift; sourceTree = "<group>"; };
+		82D40C651EC96FE8005FF4BD /* NKDownloadManger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKDownloadManger.swift; sourceTree = "<group>"; };
+		82D40C671EC9737B005FF4BD /* FinishViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinishViewController.swift; sourceTree = "<group>"; };
+		82D40C691EC975C4005FF4BD /* NKDownlaodTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKDownlaodTask.swift; sourceTree = "<group>"; };
+		82D40C6B1EC9849E005FF4BD /* DownloadDefine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadDefine.swift; sourceTree = "<group>"; };
 		82ECB40F1EC944D700B60878 /* NKDownload.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NKDownload.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82ECB4121EC944D700B60878 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		82ECB4141EC944D700B60878 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -47,6 +59,8 @@
 		82ECB42E1EC944D700B60878 /* NKDownloadUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NKDownloadUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		82ECB4321EC944D700B60878 /* NKDownloadUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NKDownloadUITests.swift; sourceTree = "<group>"; };
 		82ECB4341EC944D700B60878 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		82F232229B91BCCDCDFFC29A /* Pods-NKDownload.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NKDownload.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NKDownload/Pods-NKDownload.debug.xcconfig"; sourceTree = "<group>"; };
+		EBF90964D603C44C6BDB8B22 /* Pods-NKDownload.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NKDownload.release.xcconfig"; path = "Pods/Target Support Files/Pods-NKDownload/Pods-NKDownload.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0203357FA7954550DE09FBC7 /* Pods_NKDownload.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +96,8 @@
 				82ECB4261EC944D700B60878 /* NKDownloadTests */,
 				82ECB4311EC944D700B60878 /* NKDownloadUITests */,
 				82ECB4101EC944D700B60878 /* Products */,
+				C219977369C75CCEC2817CB0 /* Pods */,
+				DB8C4A329B82F294D9F3FEFA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,6 +116,11 @@
 			children = (
 				82ECB4121EC944D700B60878 /* AppDelegate.swift */,
 				82ECB4141EC944D700B60878 /* ViewController.swift */,
+				82D40C611EC94D8E005FF4BD /* DownloadCell.swift */,
+				82D40C671EC9737B005FF4BD /* FinishViewController.swift */,
+				82D40C651EC96FE8005FF4BD /* NKDownloadManger.swift */,
+				82D40C691EC975C4005FF4BD /* NKDownlaodTask.swift */,
+				82D40C6B1EC9849E005FF4BD /* DownloadDefine.swift */,
 				82ECB4161EC944D700B60878 /* Main.storyboard */,
 				82ECB4191EC944D700B60878 /* Assets.xcassets */,
 				82ECB41B1EC944D700B60878 /* LaunchScreen.storyboard */,
@@ -125,6 +147,23 @@
 			path = NKDownloadUITests;
 			sourceTree = "<group>";
 		};
+		C219977369C75CCEC2817CB0 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				82F232229B91BCCDCDFFC29A /* Pods-NKDownload.debug.xcconfig */,
+				EBF90964D603C44C6BDB8B22 /* Pods-NKDownload.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		DB8C4A329B82F294D9F3FEFA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2ABE88076E01286F21DB03C3 /* Pods_NKDownload.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -132,9 +171,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 82ECB4371EC944D700B60878 /* Build configuration list for PBXNativeTarget "NKDownload" */;
 			buildPhases = (
+				67E4764ED5531BC537EEDA3C /* [CP] Check Pods Manifest.lock */,
 				82ECB40B1EC944D700B60878 /* Sources */,
 				82ECB40C1EC944D700B60878 /* Frameworks */,
 				82ECB40D1EC944D700B60878 /* Resources */,
+				0519789C99A529C98E0B4EDE /* [CP] Embed Pods Frameworks */,
+				8B010AAD56AE835F3BECAFE4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -254,13 +296,66 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0519789C99A529C98E0B4EDE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NKDownload/Pods-NKDownload-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		67E4764ED5531BC537EEDA3C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		8B010AAD56AE835F3BECAFE4 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NKDownload/Pods-NKDownload-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		82ECB40B1EC944D700B60878 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				82D40C681EC9737B005FF4BD /* FinishViewController.swift in Sources */,
+				82D40C6A1EC975C4005FF4BD /* NKDownlaodTask.swift in Sources */,
+				82D40C661EC96FE8005FF4BD /* NKDownloadManger.swift in Sources */,
+				82D40C6C1EC9849E005FF4BD /* DownloadDefine.swift in Sources */,
 				82ECB4151EC944D700B60878 /* ViewController.swift in Sources */,
 				82ECB4131EC944D700B60878 /* AppDelegate.swift in Sources */,
+				82D40C621EC94D8E005FF4BD /* DownloadCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,9 +507,11 @@
 		};
 		82ECB4381EC944D700B60878 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 82F232229B91BCCDCDFFC29A /* Pods-NKDownload.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = NKDownload/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "--.NKDownload";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -424,9 +521,11 @@
 		};
 		82ECB4391EC944D700B60878 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EBF90964D603C44C6BDB8B22 /* Pods-NKDownload.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = NKDownload/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "--.NKDownload";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -507,6 +606,7 @@
 				82ECB4391EC944D700B60878 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		82ECB43A1EC944D700B60878 /* Build configuration list for PBXNativeTarget "NKDownloadTests" */ = {
 			isa = XCConfigurationList;
@@ -515,6 +615,7 @@
 				82ECB43C1EC944D700B60878 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		82ECB43D1EC944D700B60878 /* Build configuration list for PBXNativeTarget "NKDownloadUITests" */ = {
 			isa = XCConfigurationList;
@@ -523,6 +624,7 @@
 				82ECB43F1EC944D700B60878 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

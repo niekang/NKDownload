@@ -1,26 +1,175 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ReK-lo-1h1">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--Navigation Controller-->
+        <scene sceneID="lHx-Ik-q2O">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController id="ReK-lo-1h1" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Rmg-za-1fc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="RUL-mi-r3W" kind="relationship" relationship="rootViewController" id="NZq-Y9-PZw"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dcB-dY-utk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1560" y="64"/>
+        </scene>
+        <!--视频列表-->
+        <scene sceneID="g61-TP-NvS">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="RUL-mi-r3W" customClass="ViewController" customModule="NKDownload" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                        <viewControllerLayoutGuide type="top" id="sVD-QD-kVz"/>
+                        <viewControllerLayoutGuide type="bottom" id="Uf5-5e-J9S"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" id="A9R-RZ-vxb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="65" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="e5h-yf-s1n">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="DownloadCell" rowHeight="65" id="ytM-1h-jM0" userLabel="DownloadCel" customClass="DownloadCell" customModule="NKDownload" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="65"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ytM-1h-jM0" id="yjJ-US-Buk">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="65"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="地址" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZNh-lP-WWm" userLabel="地址">
+                                                    <rect key="frame" x="10" y="10" width="285" height="14"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4CT-Hx-cHo" userLabel="底部线条">
+                                                    <rect key="frame" x="10" y="64" width="365" height="1"/>
+                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="1" id="IGz-Fa-NsM"/>
+                                                    </constraints>
+                                                </view>
+                                                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wjn-qW-Noh" userLabel="下载进度">
+                                                    <rect key="frame" x="10" y="29" width="285" height="2"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="2" id="j4p-Bv-Om8"/>
+                                                    </constraints>
+                                                </progressView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0M" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vew-O1-q1C" userLabel="文件大小">
+                                                    <rect key="frame" x="10" y="36" width="100" height="18"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="100" id="miW-hz-mxv"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0KB/S" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Np4-1L-pc6">
+                                                    <rect key="frame" x="195" y="36" width="100" height="18"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="100" id="WZQ-Ax-q63"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bz5-ca-5jy" userLabel="下载">
+                                                    <rect key="frame" x="295" y="10" width="80" height="44"/>
+                                                    <state key="normal" title="点击下载"/>
+                                                    <connections>
+                                                        <action selector="downloadButtonClick:" destination="ytM-1h-jM0" eventType="touchUpInside" id="4rA-Sm-REv"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="wjn-qW-Noh" secondAttribute="trailing" constant="80" id="2pb-fY-lLa"/>
+                                                <constraint firstItem="Bz5-ca-5jy" firstAttribute="leading" secondItem="Np4-1L-pc6" secondAttribute="trailing" id="4yT-vT-XY6"/>
+                                                <constraint firstAttribute="trailing" secondItem="4CT-Hx-cHo" secondAttribute="trailing" id="63b-UP-28V"/>
+                                                <constraint firstItem="Np4-1L-pc6" firstAttribute="trailing" secondItem="wjn-qW-Noh" secondAttribute="trailing" id="H50-yv-tkK"/>
+                                                <constraint firstItem="ZNh-lP-WWm" firstAttribute="leading" secondItem="yjJ-US-Buk" secondAttribute="leading" constant="10" id="KvB-XB-ynF"/>
+                                                <constraint firstItem="ZNh-lP-WWm" firstAttribute="width" secondItem="wjn-qW-Noh" secondAttribute="width" id="QCy-5e-Nx4"/>
+                                                <constraint firstAttribute="bottom" secondItem="4CT-Hx-cHo" secondAttribute="bottom" id="Sc0-Sc-CbJ"/>
+                                                <constraint firstItem="ZNh-lP-WWm" firstAttribute="top" secondItem="yjJ-US-Buk" secondAttribute="top" constant="10" id="SiW-Dk-1sq"/>
+                                                <constraint firstItem="wjn-qW-Noh" firstAttribute="top" secondItem="ZNh-lP-WWm" secondAttribute="bottom" constant="5" id="UBg-tk-8GB"/>
+                                                <constraint firstItem="vew-O1-q1C" firstAttribute="leading" secondItem="wjn-qW-Noh" secondAttribute="leading" id="Y8m-kz-8Jt"/>
+                                                <constraint firstItem="ZNh-lP-WWm" firstAttribute="leading" secondItem="wjn-qW-Noh" secondAttribute="leading" id="Zug-Sy-kZT"/>
+                                                <constraint firstItem="Np4-1L-pc6" firstAttribute="top" secondItem="vew-O1-q1C" secondAttribute="top" id="aMB-3I-qiE"/>
+                                                <constraint firstAttribute="trailing" secondItem="Bz5-ca-5jy" secondAttribute="trailing" id="aPF-wp-v7l"/>
+                                                <constraint firstItem="4CT-Hx-cHo" firstAttribute="leading" secondItem="yjJ-US-Buk" secondAttribute="leading" constant="10" id="h8w-fO-nui"/>
+                                                <constraint firstItem="vew-O1-q1C" firstAttribute="top" secondItem="wjn-qW-Noh" secondAttribute="bottom" constant="5" id="lkG-CN-J69"/>
+                                                <constraint firstItem="4CT-Hx-cHo" firstAttribute="top" secondItem="vew-O1-q1C" secondAttribute="bottom" constant="10" id="mvT-3y-Hny"/>
+                                                <constraint firstItem="Bz5-ca-5jy" firstAttribute="bottom" secondItem="Np4-1L-pc6" secondAttribute="bottom" id="rTc-wC-pgo"/>
+                                                <constraint firstItem="Bz5-ca-5jy" firstAttribute="top" secondItem="ZNh-lP-WWm" secondAttribute="top" id="rr5-1y-XZH"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="downloadBtn" destination="Bz5-ca-5jy" id="iLp-99-1fS"/>
+                                            <outlet property="lengthLab" destination="vew-O1-q1C" id="sRl-N0-rvl"/>
+                                            <outlet property="progressView" destination="wjn-qW-Noh" id="FrQ-E5-TNO"/>
+                                            <outlet property="speedLab" destination="Np4-1L-pc6" id="2OC-Aq-QQn"/>
+                                            <outlet property="urlLab" destination="ZNh-lP-WWm" id="jSy-oq-wVG"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="RUL-mi-r3W" id="555-zK-trj"/>
+                                    <outlet property="delegate" destination="RUL-mi-r3W" id="f7s-F5-MqG"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="e5h-yf-s1n" firstAttribute="top" secondItem="sVD-QD-kVz" secondAttribute="bottom" id="LUp-Lp-ood"/>
+                            <constraint firstItem="e5h-yf-s1n" firstAttribute="bottom" secondItem="Uf5-5e-J9S" secondAttribute="top" id="RE5-ed-hOf"/>
+                            <constraint firstItem="e5h-yf-s1n" firstAttribute="leading" secondItem="A9R-RZ-vxb" secondAttribute="leading" id="cuC-4U-Ggh"/>
+                            <constraint firstAttribute="trailing" secondItem="e5h-yf-s1n" secondAttribute="trailing" id="pcr-gh-I6D"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="视频列表" id="X3o-KV-cJz">
+                        <barButtonItem key="rightBarButtonItem" title="完成" id="Edo-QP-Uly">
+                            <connections>
+                                <segue destination="PBA-NB-XDW" kind="push" id="NkF-qY-rhV"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="e5h-yf-s1n" id="YPc-C3-eok"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hSt-WW-0r8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-703" y="32"/>
+        </scene>
+        <!--Finish View Controller-->
+        <scene sceneID="O48-7t-coR">
+            <objects>
+                <viewController id="PBA-NB-XDW" customClass="FinishViewController" customModule="NKDownload" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="HLJ-qY-ge3"/>
+                        <viewControllerLayoutGuide type="bottom" id="mrQ-8C-xa9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Wam-qK-rlb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="2B6-49-IXs"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BB1-q4-4er" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="170" y="32"/>
         </scene>
     </scenes>
 </document>
