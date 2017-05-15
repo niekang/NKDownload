@@ -10,7 +10,7 @@ import UIKit
 
 class DownloadCell: UITableViewCell {
         
-    private lazy var state = NKDownloadState.waiting
+    lazy var state = NKDownloadState.waiting
     
     @IBOutlet weak var urlLab: UILabel!
     
@@ -25,6 +25,7 @@ class DownloadCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         //FIXME:为了方便测试才这样写
+        //实际项目中当前cell已经在下载任务列表中，下载初始状态不是暂停状态
         state = .suspend
     }
 
@@ -36,9 +37,11 @@ class DownloadCell: UITableViewCell {
         case .downloading:
             state = .suspend
             downloadBtn.setTitle("暂停", for: .normal)
+            NKDownloadManger.shared.nk_suspendDownloadTaskWithURLString(urlString: urlLab.text!)
         case .suspend:
             state = .waiting
             downloadBtn.setTitle("等待", for: .normal)
+            NKDownloadManger.shared.nk_addDownloadTaskWithURLString(urlString: urlLab.text!)
         case .finish:
             break
         case .error:
