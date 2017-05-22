@@ -58,7 +58,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="添加任务" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qmo-kR-OWR">
                                             <rect key="frame" x="295" y="38.5" width="62" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <nil key="textColor"/>
+                                            <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -89,7 +89,7 @@
                     <navigationItem key="navigationItem" title="视频列表" id="l5v-s9-BCO">
                         <barButtonItem key="rightBarButtonItem" title="下载中" id="UGz-TM-PGR">
                             <connections>
-                                <segue destination="RUL-mi-r3W" kind="push" id="fUo-VL-rNl"/>
+                                <segue destination="RUL-mi-r3W" kind="show" id="jfN-fF-QC1"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -217,9 +217,7 @@
                             <constraint firstAttribute="trailing" secondItem="e5h-yf-s1n" secondAttribute="trailing" id="pcr-gh-I6D"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="下载中" id="X3o-KV-cJz">
-                        <barButtonItem key="rightBarButtonItem" title="完成" id="Edo-QP-Uly"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="下载中" id="X3o-KV-cJz"/>
                     <connections>
                         <outlet property="tableView" destination="e5h-yf-s1n" id="YPc-C3-eok"/>
                     </connections>

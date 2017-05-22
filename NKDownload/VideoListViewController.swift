@@ -9,7 +9,7 @@
 import UIKit
 
 class VideoListViewController: UITableViewController {
-
+    fileprivate let reuse = "VideoCell"
     lazy var dataArr:[String] = {
         return ["http://source.nongguanjia.com/Z1A0013.mp4",
                 "http://source.nongguanjia.com/Z1A0014.mp4",
@@ -23,6 +23,7 @@ class VideoListViewController: UITableViewController {
         tableView.estimatedRowHeight = 100;
         tableView.rowHeight = UITableViewAutomaticDimension
     }
+
 }
 
 extension VideoListViewController{
@@ -31,13 +32,27 @@ extension VideoListViewController{
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "VideoCell") as! VideoCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuse) as! VideoCell
         cell.urlLab.text = dataArr[indexPath.row];
+        if DownloadSqlite.manager.isInDownloadList(urlString: cell.urlLab.text!){
+            cell.stateLab.text = "已添加"
+        }else{
+            cell.stateLab.text = "添加任务"
+        }
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath)
-        
+        let cell = tableView.cellForRow(at: indexPath) as! VideoCell
+        let stateString = cell.stateLab.text!
+        switch stateString{
+        case "添加任务":
+            NKDownloadManger.shared.nk_addDownloadTaskWithURLString(urlString: cell.urlLab.text!)
+            cell.stateLab.text = "已添加"
+        case "已添加":
+            break
+        default:
+            break
+        }
     }
 }

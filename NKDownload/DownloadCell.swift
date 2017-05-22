@@ -8,9 +8,16 @@
 
 import UIKit
 
+class DownloadObject: NSObject {
+    var urlString:String?
+    var currentSize:Int64 = 0
+    var totalSize:Int64 = 0
+    var state:NKDownloadState = .waiting
+}
+
 class DownloadCell: UITableViewCell {
         
-    lazy var state = NKDownloadState.waiting
+    lazy var downloadObject = DownloadObject()
     
     @IBOutlet weak var urlLab: UILabel!
     
@@ -24,29 +31,65 @@ class DownloadCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        //FIXME:为了方便测试才这样写
-        //实际项目中当前cell已经在下载任务列表中，下载初始状态不是暂停状态
-        state = .suspend
+        speedLab.isHidden = true
+    }
+    
+    func disPlayCell(object:DownloadObject){
+        downloadObject = object
+        let progress = Float(downloadObject.currentSize)/Float(downloadObject.totalSize)
+        let currentSize = Float(downloadObject.currentSize)/1024
+        var currentSizeString = ""
+        if currentSize > 1024 {
+            currentSizeString = String(format: "%.2fMB", currentSize/1024) + "/" + String(format:"%.2fMB", Float(downloadObject.totalSize)/1024/1024)
+        }else{
+            currentSizeString = String(format: "%.2fKB", currentSize) + "/" + String(format:"%.2fMB", Float(downloadObject.totalSize)/1024/1024)
+        }
+        
+        urlLab.text = object.urlString
+        progressView.progress = progress
+        lengthLab.text = currentSizeString
+
+        switch downloadObject.state {
+        case .waiting:
+            downloadBtn.setTitle("等待", for: .normal)
+        case .downloading:
+            downloadBtn.setTitle("下载中", for: .normal)
+        case .suspend:
+            downloadBtn.setTitle("暂停", for: .normal)
+        case .success:
+            downloadBtn.setTitle("完成", for: .normal)
+        case .fail:
+            downloadBtn.setTitle("下载失败", for: .normal)
+        }
     }
 
     @IBAction func downloadButtonClick(_ sender: Any) {
-        switch state {
+        
+        switch downloadObject.state {
+            
         case .waiting:
-            state = .suspend
+            downloadObject.state = .suspend
             downloadBtn.setTitle("暂停", for: .normal)
+            NKDownloadManger.shared.nk_suspendWaitingDownloadTaskWithURLString(urlString: urlLab.text!)
+            
         case .downloading:
-            state = .suspend
+            downloadObject.state = .suspend
             downloadBtn.setTitle("暂停", for: .normal)
-            NKDownloadManger.shared.nk_suspendDownloadTaskWithURLString(urlString: urlLab.text!)
+            NKDownloadManger.shared.nk_suspendCurrentDownloadTaskWithURLString(urlString: urlLab.text!)
+            
         case .suspend:
-            state = .waiting
+            downloadObject.state = .waiting
             downloadBtn.setTitle("等待", for: .normal)
-            NKDownloadManger.shared.nk_addDownloadTaskWithURLString(urlString: urlLab.text!)
-        case .finish:
+            NKDownloadManger.shared.nk_recoverDwonloadTaskWithURLString(urlString: urlLab.text!)
+            
+        case .success:
             break
-        case .error:
-            state = .waiting
+            
+        case .fail:
+            downloadObject.state = .waiting
+            NKDownloadManger.shared.nk_recoverDwonloadTaskWithURLString(urlString: urlLab.text!)
             downloadBtn.setTitle("等待", for: .normal)
         }
     }
+    
 }
