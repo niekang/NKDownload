@@ -157,7 +157,6 @@ extension NKDownloadManger{
             }
         }
         
-        //FIXME:这里的逻辑需要放到completeWithError中
         //MARK:有一种情况: 用户手动暂停了下载中任务，因为先将任务从downloadTaskArr中移除了，所以未在找到，需要从cancelTaskArr中找
         for (index,nkDownloadTask) in cancelTaskArr.enumerated() {
             if urlString == nkDownloadTask.urlString {
