@@ -14,7 +14,7 @@ protocol NKDownloadMangerDelegate:NSObjectProtocol{
     
     func nk_downloadTaskDidWriteData(nkDownloadTask:NKDownloadTask, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64)//下载进度更新
     
-    func nk_downloadTaskDidComleteWithError(nkDownloadTask:NKDownloadTask,error:NKDownloadError?)//下载完成
+    func nk_downloadTaskDidComleteWithError(nkDownloadTask:NKDownloadTask,error:NKDownloadError?)//下载成功或失败
 }
 
 class NKDownloadManger: NSObject {
@@ -33,41 +33,38 @@ class NKDownloadManger: NSObject {
 
     fileprivate lazy var configuration = URLSessionConfiguration.background(withIdentifier: "com.nkDownload")
     
-    lazy var session :URLSession = {
-        return URLSession(configuration: self.configuration, delegate: self, delegateQueue: nil)
-    }()
+    var session = URLSession()
 
     private override init() {
         super.init()
+        
+        createDownloadDirectory()
+        DownloadSqlite.manager.createTable()
+        loadDownloadDataFromLocal()
+        
         configuration.httpMaximumConnectionsPerHost = 1
         configuration.allowsCellularAccess = false
         configuration.isDiscretionary = true
         configuration.timeoutIntervalForRequest = 60
-        createDownloadDirectory()
-        DownloadSqlite.manager.createTable()
-        
-        loadDownloadDataFromLocal()
+        session = URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
+
     }
     
     //加载本地下载任务数据
     func loadDownloadDataFromLocal(){
         let downloadObjectArr = DownloadSqlite.manager.selectData()
         for downloadObject in downloadObjectArr {
-            let sessionDownloadTask = session.downloadTask(with: URL(string: downloadObject.urlString!)!)
-            let nkDownloadTask = NKDownloadTask(sessionDownloadTask: sessionDownloadTask)
+            let nkDownloadTask = NKDownloadTask(downloadURL: URL(string: downloadObject.urlString!)!)
             switch downloadObject.state {
             case .downloading:
                 //MARK:上次下载任务中若有状态为正在下载的任务,说明任务还在下载时app被杀死了
                 downloadTaskArr.append(nkDownloadTask)
-            case .waiting,.suspend:
+            case .waiting:
                 waitingTaskArr.append(nkDownloadTask)
-            case .fail:
+            case .fail,.suspend:
                 cancelTaskArr.append(nkDownloadTask)
             case .success:
                 finishTaskArr.append(nkDownloadTask)
-            }
-            if downloadTaskArr.count > 0 {
-                nk_autoStartDownloadTaskWithURLString()
             }
         }
     }
@@ -96,8 +93,7 @@ extension NKDownloadManger{
             print("错误的网址")
             return
         }
-        let sessionDownloadTask = session.downloadTask(with: url)
-        let nkDownloadTask = NKDownloadTask(sessionDownloadTask: sessionDownloadTask)
+        let nkDownloadTask = NKDownloadTask(downloadURL: url)
         waitingTaskArr.append(nkDownloadTask)
         //插入数据库
         DownloadSqlite.manager.insertData(arguments: [urlString, 0, 0, NKDownloadState.waiting])
@@ -116,9 +112,11 @@ extension NKDownloadManger{
         print("暂停下载------------")
         downloadTaskArr.remove(at: index)
         cancelTaskArr.append(nkDownloadTask)
-        nkDownloadTask.task.cancel { [weak nkDownloadTask] (data) in
+        nkDownloadTask.task?.cancel { [weak nkDownloadTask] (data) in
             nkDownloadTask?.saveResumeData(data: data)
         }
+        DownloadSqlite.manager.updateState(arguments: [NKDownloadState.suspend,urlString]);
+
     }
     
     /// 暂停等待任务
@@ -128,9 +126,9 @@ extension NKDownloadManger{
         guard let (index,nkDownloadTask) = nk_getDownloadTaskWithURLString(urlString: urlString, taskArr: waitingTaskArr) else {
             return
         }
-        DownloadSqlite.manager.updateState(arguments: [NKDownloadState.suspend,urlString]);
         waitingTaskArr.remove(at: index)
         cancelTaskArr.append(nkDownloadTask)
+        DownloadSqlite.manager.updateState(arguments: [NKDownloadState.suspend,urlString]);
     }
     
     /// 恢复取消任务 -> 下载
@@ -143,6 +141,7 @@ extension NKDownloadManger{
         }
         cancelTaskArr.remove(at: index)
         waitingTaskArr.append(nkDownloadTask)
+        DownloadSqlite.manager.updateState(arguments: [NKDownloadState.waiting.rawValue, nkDownloadTask.urlString])
         nk_autoStartDownloadTaskWithURLString()
     }
     
@@ -172,7 +171,7 @@ extension NKDownloadManger{
         return nil
     }
     
-    /// 自动开始下载任务
+    /// 是否应该立即开始下载
     fileprivate func nk_autoStartDownloadTaskWithURLString(){
         if downloadTaskArr.count == 0 {
             guard let nkDownloadTask = waitingTaskArr.first else{
@@ -180,13 +179,20 @@ extension NKDownloadManger{
             }
             waitingTaskArr.remove(at: 0)
             downloadTaskArr.append(nkDownloadTask)
-            //更新状态
-            DownloadSqlite.manager.updateState(arguments: [NKDownloadState.downloading.rawValue, nkDownloadTask.urlString])
-            if let resumeData = nkDownloadTask.resumeData {
-                nkDownloadTask.task = session.correctedDownloadTask(withResumeData: resumeData)
-            }
-            nkDownloadTask.task.resume()
+            startNKDownloadTask(nkDownloadTask: nkDownloadTask)
         }
+    }
+    
+    //开始下载
+    fileprivate func startNKDownloadTask(nkDownloadTask:NKDownloadTask){
+        //更新状态
+        DownloadSqlite.manager.updateState(arguments: [NKDownloadState.downloading.rawValue, nkDownloadTask.urlString])
+        if let resumeData = nkDownloadTask.resumeData {
+            nkDownloadTask.task = session.correctedDownloadTask(withResumeData: resumeData)
+        }else{
+            nkDownloadTask.task = session.downloadTask(with: URL(string: nkDownloadTask.urlString)!)
+        }
+        nkDownloadTask.task!.resume()
     }
 }
 
@@ -194,7 +200,7 @@ extension NKDownloadManger:URLSessionDownloadDelegate{
 
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
         
-        print("\(String(describing: OperationQueue.current)) + \(bytesWritten) + \(totalBytesWritten) +\(totalBytesExpectedToWrite)")
+        print("\(downloadTask) + \(bytesWritten) + \(totalBytesWritten) +\(totalBytesExpectedToWrite)")
         
         guard let urlString = downloadTask.currentRequest?.url?.absoluteString,
             let (_, nkDownloadTask) = nk_getDownloadTaskWithURLString(urlString: urlString, taskArr: downloadTaskArr)
@@ -212,10 +218,6 @@ extension NKDownloadManger:URLSessionDownloadDelegate{
         }
         
         try? FileManager.default.moveItem(at: location, to: nkDownloadTask.fileURL)
-    }
-    
-    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didResumeAtOffset fileOffset: Int64, expectedTotalBytes: Int64) {
-        print(fileOffset)
     }
     
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
@@ -252,6 +254,10 @@ extension NKDownloadManger:URLSessionDownloadDelegate{
             
             print("下载成功")
             delegate?.nk_downloadTaskDidComleteWithError(nkDownloadTask: nkDownloadTask, error:nil)
+        }
+        
+        session.getTasksWithCompletionHandler { (_, _, downloadTasks) in
+            print(downloadTasks)
         }
         nk_autoStartDownloadTaskWithURLString()
     }

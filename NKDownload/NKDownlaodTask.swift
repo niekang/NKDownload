@@ -10,8 +10,13 @@ import UIKit
 
 class NKDownloadTask: NSObject{
     
-    var task:URLSessionDownloadTask
-    var urlString:String
+    var task:URLSessionDownloadTask?
+    
+    var urlString:String{
+        return url.absoluteString
+    }
+    
+    var url:URL
     
     var resumeData:Data? {
         
@@ -19,16 +24,15 @@ class NKDownloadTask: NSObject{
     }
     
     var fileURL:URL{
-        return URL(fileURLWithPath: kDownloadDirectory + "/" + task.currentRequest!.url!.lastPathComponent)
+        return URL(fileURLWithPath: kDownloadDirectory + "/" + url.lastPathComponent)
     }
     
     var resumeDataURL:URL{
-        return URL(fileURLWithPath: kResumeDataDirectory + "/" + task.currentRequest!.url!.lastPathComponent.components(separatedBy: ".").first!)
+        return URL(fileURLWithPath: kResumeDataDirectory + "/" + url.lastPathComponent.components(separatedBy: ".").first!)
     }
     
-    init(sessionDownloadTask:URLSessionDownloadTask) {
-        task = sessionDownloadTask
-        urlString = sessionDownloadTask.currentRequest!.url!.absoluteString
+    init(downloadURL:URL) {
+        url = downloadURL
         super.init()
     }
     
