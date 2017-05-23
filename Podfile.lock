@@ -1,17 +1,14 @@
 PODS:
-  - Alamofire (4.4.0)
   - FMDB (2.6.2):
     - FMDB/standard (= 2.6.2)
   - FMDB/standard (2.6.2)
 
 DEPENDENCIES:
-  - Alamofire
   - FMDB
 
 SPEC CHECKSUMS:
-  Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
 
-PODFILE CHECKSUM: 32f6ba4695829d64b2be491bdcf81086a05f043f
+PODFILE CHECKSUM: e40cb3ceee4fea4e50eacb5a2863809bf24ec2b4
 
 COCOAPODS: 1.1.1
