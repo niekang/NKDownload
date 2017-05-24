@@ -36,7 +36,7 @@ class DownloadCell: UITableViewCell {
     
     func disPlayCell(object:DownloadObject){
         downloadObject = object
-        let progress = Float(downloadObject.currentSize)/Float(downloadObject.totalSize)
+        let progress = (downloadObject.totalSize == 0) ? 0 : (Float(downloadObject.currentSize)/Float(downloadObject.totalSize))
         let currentSize = Float(downloadObject.currentSize)/1024
         var currentSizeString = ""
         if currentSize > 1024 {
