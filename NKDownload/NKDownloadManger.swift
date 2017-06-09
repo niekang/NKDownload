@@ -199,7 +199,7 @@ extension NKDownloadManger:URLSessionDownloadDelegate{
 
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
         
-        print("\(downloadTask) + \(bytesWritten) + \(totalBytesWritten) +\(totalBytesExpectedToWrite)")
+//        print("\(downloadTask) + \(bytesWritten) + \(totalBytesWritten) +\(totalBytesExpectedToWrite)")
         
         guard let urlString = downloadTask.currentRequest?.url?.absoluteString,
             let (_, nkDownloadTask) = nk_getDownloadTaskWithURLString(urlString: urlString, taskArr: downloadTaskArr)
