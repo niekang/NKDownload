@@ -9,14 +9,13 @@
 /* Begin PBXBuildFile section */
 		0203357FA7954550DE09FBC7 /* Pods_NKDownload.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ABE88076E01286F21DB03C3 /* Pods_NKDownload.framework */; };
 		825F055D1ECA9853007F83C4 /* DownloadSqlite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825F055C1ECA9853007F83C4 /* DownloadSqlite.swift */; };
-		82D40C621EC94D8E005FF4BD /* DownloadCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D40C611EC94D8E005FF4BD /* DownloadCell.swift */; };
-		82D40C661EC96FE8005FF4BD /* NKDownloadManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D40C651EC96FE8005FF4BD /* NKDownloadManger.swift */; };
+		82BB3C4429561CC50084DC7F /* NKDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BB3C4329561CC50084DC7F /* NKDownloadManager.swift */; };
+		82BB3C47295707BE0084DC7F /* NKDownloadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BB3C46295707BE0084DC7F /* NKDownloadOperation.swift */; };
 		82D40C681EC9737B005FF4BD /* VideoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D40C671EC9737B005FF4BD /* VideoListViewController.swift */; };
 		82D40C6A1EC975C4005FF4BD /* NKDownlaodTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D40C691EC975C4005FF4BD /* NKDownlaodTask.swift */; };
 		82D40C6C1EC9849E005FF4BD /* DownloadDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D40C6B1EC9849E005FF4BD /* DownloadDefine.swift */; };
 		82D40C6E1EC9B1D2005FF4BD /* VideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D40C6D1EC9B1D2005FF4BD /* VideoCell.swift */; };
 		82ECB4131EC944D700B60878 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82ECB4121EC944D700B60878 /* AppDelegate.swift */; };
-		82ECB4151EC944D700B60878 /* DownloadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82ECB4141EC944D700B60878 /* DownloadingViewController.swift */; };
 		82ECB4181EC944D700B60878 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82ECB4161EC944D700B60878 /* Main.storyboard */; };
 		82ECB41A1EC944D700B60878 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82ECB4191EC944D700B60878 /* Assets.xcassets */; };
 		82ECB41D1EC944D700B60878 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82ECB41B1EC944D700B60878 /* LaunchScreen.storyboard */; };
@@ -44,15 +43,14 @@
 /* Begin PBXFileReference section */
 		2ABE88076E01286F21DB03C3 /* Pods_NKDownload.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NKDownload.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		825F055C1ECA9853007F83C4 /* DownloadSqlite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadSqlite.swift; sourceTree = "<group>"; };
-		82D40C611EC94D8E005FF4BD /* DownloadCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadCell.swift; sourceTree = "<group>"; };
-		82D40C651EC96FE8005FF4BD /* NKDownloadManger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKDownloadManger.swift; sourceTree = "<group>"; };
+		82BB3C4329561CC50084DC7F /* NKDownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NKDownloadManager.swift; sourceTree = "<group>"; };
+		82BB3C46295707BE0084DC7F /* NKDownloadOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NKDownloadOperation.swift; sourceTree = "<group>"; };
 		82D40C671EC9737B005FF4BD /* VideoListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoListViewController.swift; sourceTree = "<group>"; };
 		82D40C691EC975C4005FF4BD /* NKDownlaodTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKDownlaodTask.swift; sourceTree = "<group>"; };
 		82D40C6B1EC9849E005FF4BD /* DownloadDefine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadDefine.swift; sourceTree = "<group>"; };
 		82D40C6D1EC9B1D2005FF4BD /* VideoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCell.swift; sourceTree = "<group>"; };
 		82ECB40F1EC944D700B60878 /* NKDownload.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NKDownload.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82ECB4121EC944D700B60878 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		82ECB4141EC944D700B60878 /* DownloadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadingViewController.swift; sourceTree = "<group>"; };
 		82ECB4171EC944D700B60878 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		82ECB4191EC944D700B60878 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		82ECB41C1EC944D700B60878 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -93,6 +91,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		82BB3C45295631FD0084DC7F /* SessionManager */ = {
+			isa = PBXGroup;
+			children = (
+				82D40C691EC975C4005FF4BD /* NKDownlaodTask.swift */,
+				82BB3C46295707BE0084DC7F /* NKDownloadOperation.swift */,
+				82BB3C4329561CC50084DC7F /* NKDownloadManager.swift */,
+			);
+			path = SessionManager;
+			sourceTree = "<group>";
+		};
 		82ECB4061EC944D700B60878 = {
 			isa = PBXGroup;
 			children = (
@@ -121,10 +129,7 @@
 				82ECB4121EC944D700B60878 /* AppDelegate.swift */,
 				82D40C671EC9737B005FF4BD /* VideoListViewController.swift */,
 				82D40C6D1EC9B1D2005FF4BD /* VideoCell.swift */,
-				82ECB4141EC944D700B60878 /* DownloadingViewController.swift */,
-				82D40C611EC94D8E005FF4BD /* DownloadCell.swift */,
-				82D40C651EC96FE8005FF4BD /* NKDownloadManger.swift */,
-				82D40C691EC975C4005FF4BD /* NKDownlaodTask.swift */,
+				82BB3C45295631FD0084DC7F /* SessionManager */,
 				825F055C1ECA9853007F83C4 /* DownloadSqlite.swift */,
 				82D40C6B1EC9849E005FF4BD /* DownloadDefine.swift */,
 				82ECB4161EC944D700B60878 /* Main.storyboard */,
@@ -241,8 +246,8 @@
 				TargetAttributes = {
 					82ECB40E1EC944D700B60878 = {
 						CreatedOnToolsVersion = 8.3;
-						DevelopmentTeam = Q9QGXP49FA;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = 72RGKG7C8C;
+						ProvisioningStyle = Manual;
 					};
 					82ECB4221EC944D700B60878 = {
 						CreatedOnToolsVersion = 8.3;
@@ -261,6 +266,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -356,15 +362,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				82BB3C4429561CC50084DC7F /* NKDownloadManager.swift in Sources */,
 				82D40C681EC9737B005FF4BD /* VideoListViewController.swift in Sources */,
 				82D40C6E1EC9B1D2005FF4BD /* VideoCell.swift in Sources */,
 				82D40C6A1EC975C4005FF4BD /* NKDownlaodTask.swift in Sources */,
-				82D40C661EC96FE8005FF4BD /* NKDownloadManger.swift in Sources */,
 				82D40C6C1EC9849E005FF4BD /* DownloadDefine.swift in Sources */,
-				82ECB4151EC944D700B60878 /* DownloadingViewController.swift in Sources */,
 				82ECB4131EC944D700B60878 /* AppDelegate.swift in Sources */,
+				82BB3C47295707BE0084DC7F /* NKDownloadOperation.swift in Sources */,
 				825F055D1ECA9853007F83C4 /* DownloadSqlite.swift in Sources */,
-				82D40C621EC94D8E005FF4BD /* DownloadCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -519,13 +524,17 @@
 			baseConfigurationReference = 82F232229B91BCCDCDFFC29A /* Pods-NKDownload.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = Q9QGXP49FA;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 72RGKG7C8C;
 				INFOPLIST_FILE = NKDownload/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "--.NKDownload";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = mtec_dev_all_meitu;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -534,13 +543,15 @@
 			baseConfigurationReference = EBF90964D603C44C6BDB8B22 /* Pods-NKDownload.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = Q9QGXP49FA;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = NKDownload/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "--.NKDownload";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};

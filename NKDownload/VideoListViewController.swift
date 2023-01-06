@@ -7,21 +7,33 @@
 //
 
 import UIKit
+import AVFoundation
+
+struct Video {
+    var url: String
+    var id: Int
+}
 
 class VideoListViewController: UITableViewController {
     fileprivate let reuse = "VideoCell"
-    lazy var dataArr:[String] = {
-        return ["http://source.nongguanjia.com/Z1A0013.mp4",
-                "http://source.nongguanjia.com/Z1A0014.mp4",
-                "http://source.nongguanjia.com/Z1A0015.mp4",
-                "http://source.nongguanjia.com/Z1A0016.mp4",
-                "http://source.nongguanjia.com/Z1A0017.mp4"]
+    lazy var dataArr:[Video] = {
+        return [
+            Video(url: "https://mvvideo5.meitudata.com/56ea0e90d6cb2653.mp4", id: 0),
+//            Video(url: "https://mvvideo5.meitudata.com/56ea0e90d6cb2653.mp4", id: 1)
+        ]
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.estimatedRowHeight = 100;
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = 100
+        NKDownloadManager.shared.delegate = self
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        let asset = AVAsset(url: URL(string: "https://mvvideo5.meitudata.com/56ea0e90d6cb2653.mp4")!)
+        asset.loadValuesAsynchronously(forKeys: <#T##[String]#>)
     }
 
 }
@@ -33,26 +45,36 @@ extension VideoListViewController{
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuse) as! VideoCell
-        cell.urlLab.text = dataArr[indexPath.row];
-        if DownloadSqlite.manager.isInDownloadList(urlString: cell.urlLab.text!){
-            cell.stateLab.text = "已添加"
-        }else{
-            cell.stateLab.text = "添加任务"
-        }
+        cell.urlLab.text = dataArr[indexPath.row].url
+        cell.delegate = self
         return cell
     }
+}
+
+extension VideoListViewController: VideoCellDelegate {
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath) as! VideoCell
-        let stateString = cell.stateLab.text!
-        switch stateString{
-        case "添加任务":
-            NKDownloadManger.shared.nk_addDownloadTaskWithURLString(urlString: cell.urlLab.text!)
-            cell.stateLab.text = "已添加"
-        case "已添加":
-            break
-        default:
-            break
+    func download(cell: VideoCell) {
+        guard let indexPath = tableView.indexPath(for: cell) else {
+            return
+        }
+        let video = dataArr[indexPath.row]
+        NKDownloadManager.shared.addDownloadTask(with: video.url)
+    }
+}
+
+extension VideoListViewController: NKDownloadManagerDelegate {
+    
+    func downloadTaskUpdate(taskDelegate: NKDownloadTaskDelegate) {
+        guard let cells = tableView.visibleCells as? [VideoCell] else {
+            return
+        }
+        for cell in cells {
+            if let indexPath = tableView.indexPath(for: cell)  {
+                let urlString = dataArr[indexPath.row].url
+                if urlString == taskDelegate.task.originalRequest?.url?.absoluteString {
+                    cell.progressView.progress = Float(taskDelegate.progress.fractionCompleted)
+                }
+            }
         }
     }
 }

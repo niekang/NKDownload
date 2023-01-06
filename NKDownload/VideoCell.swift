@@ -8,20 +8,23 @@
 
 import UIKit
 
+protocol VideoCellDelegate: NSObjectProtocol {
+    func download(cell: VideoCell)
+}
+
 class VideoCell: UITableViewCell {
 
-    @IBOutlet weak var urlLab: UILabel!
-    @IBOutlet weak var stateLab: UILabel!
+    @IBOutlet weak var titleLab: UILabel!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    @IBOutlet weak var urlLab: UILabel!
+    
+    @IBOutlet weak var downloadBtn: UIButton!
+    
+    @IBOutlet weak var progressView: UIProgressView!
+    
+    weak var delegate: VideoCellDelegate?
+
+    @IBAction func download(_ sender: UIButton) {
+        delegate?.download(cell: self)
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
 }
